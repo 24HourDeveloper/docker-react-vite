@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true uncoded/docker-react-vite npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react-vite"
+  env: "Docker-react-vite-env"
+  bucket_name: "elasticbeanstalk-us-east-2-529088296668"
+  bucket_path: "docker-react-vite"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_key_id: $AWS_SECRET_KEY
