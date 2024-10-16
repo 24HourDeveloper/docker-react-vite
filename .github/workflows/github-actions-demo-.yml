@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Run-Test-And-Linter:
+  test-linter:
     runs-on: ubuntu-latest
     steps:
       - name: Get the code
@@ -13,6 +13,13 @@ jobs:
         run: npm run lint
       - name: Run test
         run: npm run test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
       - name: Run Build
         run: npm run build
       - name: Deployment
